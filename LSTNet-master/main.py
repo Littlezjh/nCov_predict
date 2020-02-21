@@ -153,13 +153,13 @@ try:
         print('| end of epoch {:3d} | time: {:5.2f}s | train_loss {:5.4f} | valid rse {:5.4f} | valid rae {:5.4f} | valid corr  {:5.4f}'.format(epoch, (time.time() - epoch_start_time), train_loss, val_loss, val_rae, val_corr))
         # save the model if the validation loss is the best we've seen so far.
 
-        # if val_loss < best_val:
-        #     with open(args.save, 'wb') as f:
-        #         torch.save(model, f)
-        #     best_val = val_loss
-        # if epoch % 5 == 0:
-        test_acc, test_rae, test_corr  = evaluate(Data, Data.test[0], Data.test[1], model, evaluateL2, evaluateL1, args.batch_size);
-        print ("test rse {:5.4f} | test rae {:5.4f} | test corr {:5.4f}".format(test_acc, test_rae, test_corr))
+        if val_loss < best_val:
+            with open(args.save, 'wb') as f:
+                torch.save(model, f)
+            best_val = val_loss
+        if epoch % 5 == 0:
+            test_acc, test_rae, test_corr  = evaluate(Data, Data.test[0], Data.test[1], model, evaluateL2, evaluateL1, args.batch_size);
+            print ("test rse {:5.4f} | test rae {:5.4f} | test corr {:5.4f}".format(test_acc, test_rae, test_corr))
         all_loss.append([train_loss,val_loss,test_acc])
 
 except KeyboardInterrupt:
@@ -172,5 +172,5 @@ with open(args.save, 'rb') as f:
 test_acc, test_rae, test_corr  = evaluate(Data, Data.test[0], Data.test[1], model, evaluateL2, evaluateL1, args.batch_size);
 print ("test rse {:5.4f} | test rae {:5.4f} | test corr {:5.4f}".format(test_acc, test_rae, test_corr))
 
-plt.plot(all_loss)
-plt.show()
+# plt.plot(all_loss)
+# plt.show()
