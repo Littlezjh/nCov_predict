@@ -9,3 +9,5 @@
 **data_step3.py**主要用于生成每日的各个省的新增确诊，治愈和死亡
 
 **LSTNet-master是主要的代码**
+
+**因为这个项目没用pycharm的version control，所以没法很方便的更新。因此重新创建了一个仓库，更新版请移步[新仓库](https://github.com/Littlezjh/nCov_prediction)**
